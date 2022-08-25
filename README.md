@@ -5,7 +5,7 @@ Here comes a short description of the plugin.
 
 ---
 
-## Features
+## Commands
 - [ ] /spawn - Teleports you to the spawn
 - [ ] /help - Shows this help
 - [ ] /ping - Shows your ping
