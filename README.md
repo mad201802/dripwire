@@ -8,7 +8,7 @@ Here comes a short description of the plugin.
 ## Commands
 - [X] /spawn - Teleports you to the spawn
 - [ ] /help - Shows this help
-- [ ] /ping - Shows your ping
+- [X] /ping - Shows your ping
 - [ ] /home - Teleports you to your homes
 - [ ] /sethome - Sets your home
 - [ ] /delhome - Deletes your home

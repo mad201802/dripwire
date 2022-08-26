@@ -7,3 +7,6 @@ commands:
   spawn:
     description: Teleports you to spawn
     usage: /spawn
+  ping:
+    description: Gets the ping of the player
+    usage: /ping
