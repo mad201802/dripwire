@@ -9,7 +9,12 @@ public class TpaCmd implements CommandExecutor {
         if(sender instanceof Player p) {
             if (args.length == 1) {
                 Player target = p.getServer().getPlayer(args[0]);
-                if (target != null && !target.equals(p)) {
+                if (target != null) {
+                    if(target.equals(p)) {
+                        p.sendMessage("Du kannst dich nicht zu dir selber teleportieren!");
+                        return true;
+                    }
+
                     if (!Dripwire.INSTANCE.tpas.containsKey(p)) {
                         Dripwire.INSTANCE.tpas.put(p, target);
                         p.sendMessage("Du hast eine Tpa Anfrage zu " + target.getName() + " gesendet");
