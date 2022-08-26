@@ -10,3 +10,15 @@ commands:
   ping:
     description: Gets the ping of the player
     usage: /ping
+  tpa:
+    description: Teleports you to the player
+    usage: /tpa <player>
+  tpaccept:
+    description: Accepts the teleport request
+    usage: /tpaccept <player>
+  tpdeny:
+    description: Denies the teleport request
+    usage: /tpdeny <player>
+  tpcancel:
+    description: Cancels the teleport request
+    usage: /tpcancel
