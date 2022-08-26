@@ -3,4 +3,6 @@ version: '${project.version}'
 main: dripwire.Dripwire
 api-version: 1.19
 authors: [ mad201802, nlfmt ]
-
+commands:
+  stick:
+    description: get a stick
