@@ -6,7 +6,7 @@ Here comes a short description of the plugin.
 ---
 
 ## Commands
-- [ ] /spawn - Teleports you to the spawn
+- [X] /spawn - Teleports you to the spawn
 - [ ] /help - Shows this help
 - [ ] /ping - Shows your ping
 - [ ] /home - Teleports you to your homes
