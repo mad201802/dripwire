@@ -9,3 +9,5 @@ commands:
     usage: /spawn
   stick:
     description: get a stick
+  sethome:
+
