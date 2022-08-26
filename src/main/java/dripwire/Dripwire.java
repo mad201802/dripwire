@@ -2,11 +2,9 @@ package dripwire;
 
 import dripwire.util.ConfigFile;
 import dripwire.util.StringUtils;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class Dripwire extends JavaPlugin {
