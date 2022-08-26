@@ -10,19 +10,19 @@ public class PlayerTpaQuitEvent implements Listener {
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
-        if(Dripwire.INSTANCE.tpas.containsKey(event.getPlayer())) {
+        if(Dripwire.get().tpas.containsKey(event.getPlayer())) {
             Player player = event.getPlayer();
-            Player target = Dripwire.INSTANCE.tpas.get(player);
+            Player target = Dripwire.get().tpas.get(player);
 
-            Dripwire.INSTANCE.tpas.remove(player);
+            Dripwire.get().tpas.remove(player);
             target.sendMessage("Die Tpa Anfrage von " + player.getName() + " wurde abgebrochen");
         }
 
-        if(Dripwire.INSTANCE.tpas.containsValue(event.getPlayer())) {
+        if(Dripwire.get().tpas.containsValue(event.getPlayer())) {
             Player player = event.getPlayer();
-            Player target = Dripwire.INSTANCE.tpas.get(player);
+            Player target = Dripwire.get().tpas.get(player);
 
-            Dripwire.INSTANCE.tpas.remove(target);
+            Dripwire.get().tpas.remove(target);
             player.sendMessage("Die Tpa Anfrage an " + target.getName() + " wurde abgebrochen");
         }
     }

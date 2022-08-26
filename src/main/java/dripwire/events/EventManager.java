@@ -16,7 +16,7 @@ public class EventManager {
     }
 
     private void init() {
-        events.forEach(event -> Dripwire.INSTANCE.getServer().getPluginManager().registerEvents(event, Dripwire.INSTANCE));
+        events.forEach(event -> Dripwire.get().getServer().getPluginManager().registerEvents(event, Dripwire.get()));
     }
 
     private void registerEvents() {

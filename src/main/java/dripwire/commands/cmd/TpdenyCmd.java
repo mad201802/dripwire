@@ -10,8 +10,8 @@ public class TpdenyCmd implements CommandExecutor {
             if (args.length == 1) {
                 Player target = p.getServer().getPlayer(args[0]);
                 if (target != null) {
-                    if (Dripwire.INSTANCE.tpas.containsKey(p)) {
-                        Dripwire.INSTANCE.tpas.remove(p);
+                    if (Dripwire.get().tpas.containsKey(p)) {
+                        Dripwire.get().tpas.remove(p);
                         p.sendMessage("Du hast den Tpa von " + target.getName() + " abgelehnt");
                         target.sendMessage("Der Tpa zu " + p.getName() + " wurde abgelehnt");
                     } else {

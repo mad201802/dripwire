@@ -15,8 +15,8 @@ public class TpaCmd implements CommandExecutor {
                         return true;
                     }
 
-                    if (!Dripwire.INSTANCE.tpas.containsKey(p)) {
-                        Dripwire.INSTANCE.tpas.put(p, target);
+                    if (!Dripwire.get().tpas.containsKey(p)) {
+                        Dripwire.get().tpas.put(p, target);
                         p.sendMessage("Du hast eine Tpa Anfrage zu " + target.getName() + " gesendet");
 
                         target.sendMessage("Du hast einen Tpa von " + p.getName() + " erhalten.");
