@@ -2,6 +2,9 @@ package dripwire;
 
 import dripwire.commands.CommandManager;
 import dripwire.events.EventManager;
+import dripwire.util.ConfigFile;
+import dripwire.util.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -27,7 +30,7 @@ public final class Dripwire extends JavaPlugin {
         INSTANCE = this;
 
         CommandManager.registerCommands();
-        eventManager = new EventManager();
+        EventManager eventManager = new EventManager();
     }
 
     @Override
