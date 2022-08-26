@@ -7,3 +7,5 @@ commands:
   spawn:
     description: Teleports you to spawn
     usage: /spawn
+  stick:
+    description: get a stick
