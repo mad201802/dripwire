@@ -5,11 +5,15 @@ import dripwire.events.EventManager;
 import dripwire.util.ConfigFile;
 import dripwire.util.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
 import java.util.List;
 
 public final class Dripwire extends JavaPlugin {
+
+    public HashMap<Player, Player> tpas = new HashMap<>();
 
     private static Dripwire INSTANCE;
     public static Dripwire get() {

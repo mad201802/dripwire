@@ -1,7 +1,8 @@
 package dripwire.events;
 
 import dripwire.Dripwire;
-import dripwire.events.listeners.PlayerJoinListener;
+import dripwire.events.listeners.PlayerJoinMessageListener;
+import dripwire.events.listeners.PlayerTpaQuitEvent;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
@@ -19,7 +20,8 @@ public class EventManager {
     }
 
     private void registerEvents() {
-        events.add(new PlayerJoinListener());
+        events.add(new PlayerJoinMessageListener());
+        events.add(new PlayerTpaQuitEvent());
     }
 
 }

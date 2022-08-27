@@ -8,7 +8,7 @@ Here comes a short description of the plugin.
 ## Commands
 - [X] /spawn - Teleports you to the spawn
 - [ ] /help - Shows this help
-- [ ] /ping - Shows your ping
+- [X] /ping - Shows your ping
 - [X] /home - Teleports you to your homes
 - [X] /homes - List all your homes
 - [X] /sethome - Sets your home
@@ -20,11 +20,10 @@ Here comes a short description of the plugin.
 - [ ] /createworld - Creates a new world
 - [ ] /deleteworld - Deletes a world
 - [ ] /setworldspawn - Sets the world spawn
-- [ ] /tpa - Teleports you to another player
-- [ ] /tpaccept - Accepts a teleport request
-- [ ] /tpdeny - Denies a teleport request
-- [ ] /tpcancel - Cancels a teleport request
-- [ ] /tplist - Shows a list of all teleport requests
+- [X] /tpa - Teleports you to another player
+- [X] /tpaccept - Accepts a teleport request
+- [X] /tpdeny - Denies a teleport request
+- [X] /tpcancel - Cancels a teleport request
 - [ ] /suicide - Kill yourself!
 - [ ] /invsee - See a inventory of a player
 - [ ] /back - Teleports you to your location prior to tp/spawn/warp/death
