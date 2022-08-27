@@ -7,8 +7,6 @@ commands:
   spawn:
     description: Teleports you to spawn
     usage: /spawn
-  stick:
-    description: get a stick
   ping:
     description: Gets the ping of the player
     usage: /ping
@@ -27,12 +25,12 @@ commands:
   sethome:
     description: set a home
     usage: /sethome <name>
-    delhome:
-      description: delete a home
-      usage: /delhome <name>
-    home:
-      description: teleport to a home
-      usage: /home <name>
-    homes:
-      description: list all your homes
-      usage: /homes
+  delhome:
+    description: delete a home
+    usage: /delhome <name>
+  home:
+    description: teleport to a home
+    usage: /home <name>
+  homes:
+    description: list all your homes
+    usage: /homes

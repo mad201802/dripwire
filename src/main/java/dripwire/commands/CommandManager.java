@@ -1,7 +1,11 @@
 package dripwire.commands;
 
 import dripwire.Dripwire;
-import dripwire.commands.cmd.SpawnCmd;
+import dripwire.commands.cmd.*;
+import dripwire.commands.cmd.home.DelhomeCmd;
+import dripwire.commands.cmd.home.HomeCmd;
+import dripwire.commands.cmd.home.HomesCmd;
+import dripwire.commands.cmd.home.SethomeCmd;
 
 public class CommandManager {
     public static void registerCommands()
