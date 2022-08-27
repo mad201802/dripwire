@@ -9,9 +9,10 @@ Here comes a short description of the plugin.
 - [X] /spawn - Teleports you to the spawn
 - [ ] /help - Shows this help
 - [ ] /ping - Shows your ping
-- [ ] /home - Teleports you to your homes
-- [ ] /sethome - Sets your home
-- [ ] /delhome - Deletes your home
+- [X] /home - Teleports you to your homes
+- [X] /homes - List all your homes
+- [X] /sethome - Sets your home
+- [X] /delhome - Deletes your home
 - [ ] /setwarp - Sets a warp
 - [ ] /delwarp - Deletes a warp
 - [ ] /warp - Teleports you to a warp
