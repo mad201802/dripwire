@@ -1,6 +1,8 @@
 package dripwire.commands.cmd;
 
 import dripwire.Dripwire;
+import dripwire.util.Chat;
+import net.kyori.adventure.text.Component;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 
@@ -8,20 +10,21 @@ public class TpdenyCmd implements CommandExecutor {
     public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
         if(sender instanceof Player p) {
             if (args.length == 1) {
-                Player target = p.getServer().getPlayer(args[0]);
-                if (target != null) {
-                    if (Dripwire.get().tpas.containsKey(p)) {
-                        Dripwire.get().tpas.remove(p);
-                        p.sendMessage("Du hast den Tpa von " + target.getName() + " abgelehnt");
-                        target.sendMessage("Der Tpa zu " + p.getName() + " wurde abgelehnt");
+                Player requester = p.getServer().getPlayer(args[0]);
+                if (requester != null) {
+                    if (Dripwire.INSTANCE.tpas.containsKey(requester)) {
+                        Dripwire.INSTANCE.tpas.remove(requester);
+                        p.sendMessage(Component.text("Du hast die TPA von " + requester.getName() + " abgelehnt").color(Chat.Color.RED));
+                        requester.sendMessage(Component.text("Deine TPA an " + p.getName() + " wurde abgelehnt").color(Chat.Color.RED));
+
                     } else {
-                        p.sendMessage("Keine Tpa Anfrage von " + target.getName() + " vorhanden");
+                        p.sendMessage(Component.text("Keine TPA von " + requester.getName() + " vorhanden").color(Chat.Color.RED));
                     }
                 } else {
-                    p.sendMessage("Spieler nicht gefunden");
+                    p.sendMessage(Component.text("Spieler nicht gefunden").color(Chat.Color.RED));
                 }
             } else {
-                p.sendMessage("/tpdeny <player>");
+                p.sendMessage(Component.text("Usage: /tpdeny <player>").color(Chat.Color.ORANGE));
             }
         }
         return true;
