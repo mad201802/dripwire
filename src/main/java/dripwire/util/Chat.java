@@ -35,6 +35,7 @@ public class Chat {
         TextDecoration decoration = null;
         TextColor color = defaultColor;
         boolean styleChanged = false;
+        TextComponent evComp = null;
 
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
@@ -77,7 +78,7 @@ public class Chat {
                     symbol.append(c2);
                 }
                 if (!found) {
-                    Dripwire.INSTANCE.getLogger().warning("Unescaped & with no terminating ; in text: " + text);
+//                    Dripwire.INSTANCE.getLogger().warning("Unescaped & with no terminating ; in text: " + text);
                     buf.append(c);
                     continue;
                 }
@@ -88,6 +89,14 @@ public class Chat {
                         newColor = defaultColor;
                     }
                     case "null" -> {} // Can be used to escape, for example between { and @
+                    case "gt" -> {
+                        buf.append('>');
+                        continue;
+                    }
+                    case "lt" -> {
+                        buf.append('<');
+                        continue;
+                    }
                     case "bold" -> newDecoration = TextDecoration.BOLD;
                     case "italic" -> newDecoration = TextDecoration.ITALIC;
                     case "underline" -> newDecoration = TextDecoration.UNDERLINED;
@@ -109,45 +118,97 @@ public class Chat {
 //                buf.setLength(0);
                 styleChanged = true;
             }
-            else if (c == '{') {
-                if (text.charAt(i+1) != '@') {
-                    buf.append(c);
-                    continue;
-                }
+            else if (c == '<') {
+//                if (text.charAt(i+1) != '@') {
+//                    buf.append(c);
+//                    continue;
+//                }
                 // {@run ; /tpaccept TestUser ; Accept@}
-                int j = i + 2;
+                // <run /tpaccept TestUser>Accept</run>
+                // <run="/ping" hover="test">Ping</run>
+                int j = i + 1;
                 boolean found = false;
                 StringBuilder buf2 = new StringBuilder();
-                for (; j < text.length(); ++j) {
+                String tagName;
+                String arg;
+                int innerTagsOfSameType = 0;
+
+                // find the end of the tag & get argument
+                for (; j < text.length(); j++) {
                     char c2 = text.charAt(j);
-                    if (c2 == '@' && j+1 < text.length() && text.charAt(j+1) == '}') {
+                    if (c2 == '>') {
                         found = true;
-                        i = j+1;
+                        i = j;
                         break;
                     }
                     buf2.append(c2);
                 }
-                String[] args = buf2.toString().split(" ; ");
-                System.out.println("Adding component with args: " + Arrays.toString(args));
-                TextComponent tc = parse(args[2], color);
-                switch(args[0]) {
+
+                if (!found) {
+                    Dripwire.INSTANCE.getLogger().warning("Unescaped < with no terminating > in text: " + text);
+                    buf.append(c);
+                    continue;
+                }
+
+                String tag = buf2.toString();
+                buf2.setLength(0);
+                String[] tagSplit = tag.split(" ", 2);
+                tagName = tagSplit[0];
+                arg = tagSplit.length > 1 ? tagSplit[1] : "";
+
+                // Get content inside of String
+                found = false;
+                for (j += 1; j < text.length(); ++j) {
+                    char c2 = text.charAt(j);
+                    try {
+                        if (text.substring(j, j+tagName.length()+1).equals("<" + tagName)) {
+                            innerTagsOfSameType++;
+                        }
+                        else if (text.substring(j, j+tagName.length()+2).equals("</" + tagName)) {
+                            innerTagsOfSameType--;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        break;
+                    }
+                    if (innerTagsOfSameType < 0) {
+                        found = true;
+                        i = j + tagName.length() + 2;
+                        break;
+                    }
+                    buf2.append(c2);
+                }
+
+                if (!found) {
+                    Dripwire.INSTANCE.getLogger().warning("No closing tag for '" + tagName + "' in text: " + text);
+                    buf.append(c);
+                    continue;
+                }
+
+                System.out.println("Adding component with arg " + arg);
+                System.out.println("parsing inner...");
+                evComp = parse(buf2.toString(), color);
+                System.out.println("parsing inner done");
+                switch(tagName) {
                     case "run" -> {
-                        tc = tc.clickEvent(ClickEvent.runCommand(args[1]));
+                        System.out.println("component before run: " + evComp);
+                        evComp = evComp.clickEvent(ClickEvent.runCommand(arg));
+                        System.out.println("component after run: " + evComp);
                     }
                     case "suggest" -> {
-                        tc = tc.clickEvent(ClickEvent.suggestCommand(args[1]));
+                        evComp = evComp.clickEvent(ClickEvent.suggestCommand(arg));
                     }
                     case "url" -> {
-                        tc = tc.clickEvent(ClickEvent.openUrl(args[1]));
+                        evComp = evComp.clickEvent(ClickEvent.openUrl(arg));
                     }
                     case "hover" -> {
-                        tc = tc.hoverEvent(HoverEvent.showText(parse(args[1], color)));
+                        System.out.println("before hover: " + evComp);
+                        evComp = evComp.hoverEvent(HoverEvent.showText(parse(arg)));
+                        System.out.println("after hover: " + evComp);
                     }
                     default -> {
-                        Dripwire.INSTANCE.getLogger().warning("Unknown command: " + args[0]);
+                        Dripwire.INSTANCE.getLogger().warning("Unknown tag: " + tagName);
                     }
                 }
-                components.add(tc);
             }
             else {
                 buf.append(c);
@@ -156,18 +217,31 @@ public class Chat {
             if (styleChanged || i >= text.length()-1) {
                 if (buf.length() > 0) {
                     components.add(Chat.text(buf.toString(), color, decoration));
-                    buf = new StringBuilder();
+                    if (evComp != null) {
+                        components.add(evComp);
+                    }
+                    buf.setLength(0);
                 }
+                evComp = null;
                 color = newColor;
                 decoration = newDecoration;
                 styleChanged = false;
             }
         }
+
+        if (components.size() == 1) return components.get(0);
+
         TextComponent res = Component.empty();
         for (TextComponent tc : components) {
+            System.out.println("Adding component " + tc.toString());
+
             res = res.append(tc);
         }
+        System.out.println("Result: " + res.toString());
         return res;
+    }
+    public static TextComponent parse(String text) {
+        return parse(text, null);
     }
 
     public static TextComponent text(String text, @Nullable TextColor color, @Nullable TextDecoration decoration) {
@@ -185,7 +259,14 @@ public class Chat {
         return text(text, null, null);
     }
 
-//    private static String clickable(ClickEvent.Action type, String value) {
-//        if (type == ClickEvent)
-//    }
+    public static TextComponent interactive(String text, @Nullable ClickEvent ce, @Nullable HoverEvent he) {
+        TextComponent tc = parse(text);
+        if (ce != null) {
+            tc = tc.clickEvent(ce);
+        }
+        if (he != null) {
+            tc = tc.hoverEvent(he);
+        }
+        return tc;
+    }
 }
