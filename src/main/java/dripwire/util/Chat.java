@@ -77,7 +77,7 @@ public class Chat {
                     symbol.append(c2);
                 }
                 if (!found) {
-                    Dripwire.INSTANCE.getLogger().warning("Unescaped & with no terminating ; in text: " + text);
+                    Dripwire.get().getLogger().warning("Unescaped & with no terminating ; in text: " + text);
                     buf.append(c);
                     continue;
                 }
@@ -103,7 +103,7 @@ public class Chat {
                     case "blue" -> newColor = Color.BLUE;
                     case "purple" -> newColor = Color.PURPLE;
                     case "lightpurple" -> newColor = Color.LIGHT_PURPLE;
-                    default ->  Dripwire.INSTANCE.getLogger().warning("Unknown symbol: " + symbol);
+                    default ->  Dripwire.get().getLogger().warning("Unknown symbol: " + symbol);
                 }
 //                components.add(getComponent(buf.toString(), color, decoration));
 //                buf.setLength(0);
@@ -144,7 +144,7 @@ public class Chat {
                         tc = tc.hoverEvent(HoverEvent.showText(parse(args[1], color)));
                     }
                     default -> {
-                        Dripwire.INSTANCE.getLogger().warning("Unknown command: " + args[0]);
+                        Dripwire.get().getLogger().warning("Unknown command: " + args[0]);
                     }
                 }
                 components.add(tc);

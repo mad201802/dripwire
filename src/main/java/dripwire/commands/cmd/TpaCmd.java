@@ -23,8 +23,8 @@ public class TpaCmd implements CommandExecutor {
                         return true;
                     }
 
-                    if (!Dripwire.INSTANCE.tpas.containsKey(p)) {
-                        Dripwire.INSTANCE.tpas.put(p, target);
+                    if (!Dripwire.get().tpas.containsKey(p)) {
+                        Dripwire.get().tpas.put(p, target);
                         p.sendMessage(Component.text("TPA an ")
                                 .append(Component.text(target.getName()).color(Chat.Color.ORANGE))
                                 .append(Component.text(" verschickt.")));
