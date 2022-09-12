@@ -17,7 +17,8 @@ Here comes a short description of the plugin.
 - [X] /warps - Lists all warps
 - [X] /setwarp - Sets a warp
 - [X] /delwarp - Deletes a warp
-- [ ] /nick - Changes your nickname (chat or global?)
+- [X] /nick - Changes your nickname (will be your chat name)
+- [X] /unnick - Deletes your nickname
 - [ ] /createworld - Creates a new world
 - [ ] /deleteworld - Deletes a world
 - [ ] /setworldspawn - Sets the world spawn

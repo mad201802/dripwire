@@ -46,3 +46,9 @@ commands:
   warp:
     description: teleports to a warp
     usage: /warp <name>
+  nick:
+    description: sets a nickname
+    usage: /nick <Name>
+  unnick:
+    description: deletes a nickname
+    usage: /unnick

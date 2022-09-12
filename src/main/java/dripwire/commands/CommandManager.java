@@ -6,6 +6,7 @@ import dripwire.commands.cmd.home.DelhomeCmd;
 import dripwire.commands.cmd.home.HomeCmd;
 import dripwire.commands.cmd.home.HomesCmd;
 import dripwire.commands.cmd.home.SethomeCmd;
+import dripwire.commands.cmd.nick.NickCmd;
 import dripwire.commands.cmd.tpa.TpaCmd;
 import dripwire.commands.cmd.tpa.TpacancelCmd;
 import dripwire.commands.cmd.tpa.TpacceptCmd;
@@ -32,6 +33,8 @@ public class CommandManager {
         Dripwire.get().getCommand("warps").setExecutor(new WarpsCmd());
         Dripwire.get().getCommand("warp").setExecutor(new WarpCmd());
         Dripwire.get().getCommand("homes").setExecutor(new HomesCmd());
+        Dripwire.get().getCommand("nick").setExecutor(new NickCmd());
+        Dripwire.get().getCommand("unnick").setExecutor(new NickCmd());
     }
 
 }
