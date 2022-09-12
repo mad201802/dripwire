@@ -34,3 +34,15 @@ commands:
   homes:
     description: list all your homes
     usage: /homes
+  setwarp:
+    description: sets a warp
+    usage: /setwarp <name>
+  delwarp:
+    description: deletes a warp
+    usage: /delwarp <name>
+  warps:
+    description: lists all warps
+    usage: /warps
+  warp:
+    description: teleports to a warp
+    usage: /warp <name>

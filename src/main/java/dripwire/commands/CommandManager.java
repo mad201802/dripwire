@@ -6,6 +6,10 @@ import dripwire.commands.cmd.home.DelhomeCmd;
 import dripwire.commands.cmd.home.HomeCmd;
 import dripwire.commands.cmd.home.HomesCmd;
 import dripwire.commands.cmd.home.SethomeCmd;
+import dripwire.commands.cmd.warp.DelwarpCmd;
+import dripwire.commands.cmd.warp.SetwarpCmd;
+import dripwire.commands.cmd.warp.WarpCmd;
+import dripwire.commands.cmd.warp.WarpsCmd;
 
 public class CommandManager {
     public static void registerCommands()
@@ -19,6 +23,10 @@ public class CommandManager {
         Dripwire.get().getCommand("sethome").setExecutor(new SethomeCmd());
         Dripwire.get().getCommand("delhome").setExecutor(new DelhomeCmd());
         Dripwire.get().getCommand("home").setExecutor(new HomeCmd());
+        Dripwire.get().getCommand("setwarp").setExecutor(new SetwarpCmd());
+        Dripwire.get().getCommand("delwarp").setExecutor(new DelwarpCmd());
+        Dripwire.get().getCommand("warps").setExecutor(new WarpsCmd());
+        Dripwire.get().getCommand("warp").setExecutor(new WarpCmd());
         Dripwire.get().getCommand("homes").setExecutor(new HomesCmd());
     }
 
