@@ -13,9 +13,10 @@ Here comes a short description of the plugin.
 - [X] /homes - List all your homes
 - [X] /sethome - Sets your home
 - [X] /delhome - Deletes your home
-- [ ] /setwarp - Sets a warp
-- [ ] /delwarp - Deletes a warp
-- [ ] /warp - Teleports you to a warp
+- [X] /warp - Teleports you to a warp
+- [X] /warps - Lists all warps
+- [X] /setwarp - Sets a warp
+- [X] /delwarp - Deletes a warp
 - [ ] /nick - Changes your nickname (chat or global?)
 - [ ] /createworld - Creates a new world
 - [ ] /deleteworld - Deletes a world
