@@ -1,6 +1,7 @@
 package dripwire.events.listeners;
 
 import dripwire.Dripwire;
+import dripwire.commands.cmd.tpa.TpaCmd;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,19 +11,19 @@ public class PlayerTpaQuitEvent implements Listener {
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
-        if(Dripwire.get().tpas.containsKey(event.getPlayer())) {
+        if(TpaCmd.tpas.containsKey(event.getPlayer())) {
             Player player = event.getPlayer();
-            Player target = Dripwire.get().tpas.get(player);
+            Player target = TpaCmd.tpas.get(player);
 
-            Dripwire.get().tpas.remove(player);
+            TpaCmd.tpas.remove(player);
             target.sendMessage("Die Tpa Anfrage von " + player.getName() + " wurde abgebrochen");
         }
 
-        if(Dripwire.get().tpas.containsValue(event.getPlayer())) {
+        if(TpaCmd.tpas.containsValue(event.getPlayer())) {
             Player player = event.getPlayer();
-            Player target = Dripwire.get().tpas.get(player);
+            Player target = TpaCmd.tpas.get(player);
 
-            Dripwire.get().tpas.remove(target);
+            TpaCmd.tpas.remove(target);
             player.sendMessage("Die Tpa Anfrage an " + target.getName() + " wurde abgebrochen");
         }
     }

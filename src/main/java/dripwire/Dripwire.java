@@ -12,9 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public final class Dripwire extends JavaPlugin {
-
-    public HashMap<Player, Player> tpas = new HashMap<>();
-
     private static Dripwire INSTANCE;
     public static Dripwire get() {
         return INSTANCE;

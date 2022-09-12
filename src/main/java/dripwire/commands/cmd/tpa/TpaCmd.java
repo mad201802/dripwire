@@ -1,4 +1,4 @@
-package dripwire.commands.cmd;
+package dripwire.commands.cmd.tpa;
 
 import dripwire.Dripwire;
 import dripwire.util.Chat;
@@ -12,7 +12,11 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
+
 public class TpaCmd implements CommandExecutor {
+
+    public static HashMap<Player, Player> tpas = new HashMap<>();
     public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
         if(sender instanceof Player p) {
             if (args.length == 1) {
@@ -23,8 +27,8 @@ public class TpaCmd implements CommandExecutor {
                         return true;
                     }
 
-                    if (!Dripwire.get().tpas.containsKey(p)) {
-                        Dripwire.get().tpas.put(p, target);
+                    if (!TpaCmd.tpas.containsKey(p)) {
+                        TpaCmd.tpas.put(p, target);
                         p.sendMessage(Component.text("TPA an ")
                                 .append(Component.text(target.getName()).color(Chat.Color.ORANGE))
                                 .append(Component.text(" verschickt.")));

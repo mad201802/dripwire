@@ -1,4 +1,4 @@
-package dripwire.commands.cmd;
+package dripwire.commands.cmd.tpa;
 
 import dripwire.Dripwire;
 import dripwire.util.Chat;
@@ -12,8 +12,8 @@ public class TpdenyCmd implements CommandExecutor {
             if (args.length == 1) {
                 Player requester = p.getServer().getPlayer(args[0]);
                 if (requester != null) {
-                    if (Dripwire.get().tpas.containsKey(requester)) {
-                        Dripwire.get().tpas.remove(requester);
+                    if (TpaCmd.tpas.containsKey(requester)) {
+                        TpaCmd.tpas.remove(requester);
                         p.sendMessage(Component.text("Du hast die TPA von " + requester.getName() + " abgelehnt").color(Chat.Color.RED));
                         requester.sendMessage(Component.text("Deine TPA an " + p.getName() + " wurde abgelehnt").color(Chat.Color.RED));
 

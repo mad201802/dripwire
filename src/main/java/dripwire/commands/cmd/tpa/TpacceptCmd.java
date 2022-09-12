@@ -1,4 +1,4 @@
-package dripwire.commands.cmd;
+package dripwire.commands.cmd.tpa;
 
 import dripwire.Dripwire;
 import org.bukkit.command.CommandExecutor;
@@ -10,12 +10,12 @@ public class TpacceptCmd implements CommandExecutor {
             if (args.length == 1) {
                 Player requester = p.getServer().getPlayer(args[0]);
                 if (requester != null) {
-                    if (Dripwire.get().tpas.containsKey(requester)) {
+                    if (TpaCmd.tpas.containsKey(requester)) {
                         p.sendMessage("Du hast den Tpa von " + requester.getName() + " angenommen");
 
                         requester.teleport(p);
                         requester.sendMessage("Du wurdest zu " + p.getName() + " teleportiert");
-                        Dripwire.get().tpas.remove(requester);
+                        TpaCmd.tpas.remove(requester);
                     } else {
                         p.sendMessage("Keine Tpa Anfrage von " + requester.getName() + " vorhanden");
                     }
