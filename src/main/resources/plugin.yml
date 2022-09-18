@@ -52,3 +52,7 @@ commands:
   unnick:
     description: deletes a nickname
     usage: /unnick
+  trashcan:
+    description: opens a trashcan
+    usage: /trashcan
+    aliases: [ trash, tc ]

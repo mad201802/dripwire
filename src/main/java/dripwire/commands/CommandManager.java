@@ -35,6 +35,7 @@ public class CommandManager {
         Dripwire.get().getCommand("homes").setExecutor(new HomesCmd());
         Dripwire.get().getCommand("nick").setExecutor(new NickCmd());
         Dripwire.get().getCommand("unnick").setExecutor(new NickCmd());
+        Dripwire.get().getCommand("trash").setExecutor(new TrashCmd());
     }
 
 }
