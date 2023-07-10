@@ -52,3 +52,11 @@ commands:
   unnick:
     description: deletes a nickname
     usage: /unnick
+  trashcan:
+    description: opens a trashcan
+    usage: /trashcan
+    aliases: [ trash, tc ]
+#  farmwelt:
+#    description: Teleports you to the farmwelt
+#    usage: /farmwelt
+#    aliases: [ fw ]

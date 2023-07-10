@@ -15,6 +15,7 @@ import dripwire.commands.cmd.warp.DelwarpCmd;
 import dripwire.commands.cmd.warp.SetwarpCmd;
 import dripwire.commands.cmd.warp.WarpCmd;
 import dripwire.commands.cmd.warp.WarpsCmd;
+import dripwire.commands.cmd.worlds.FarmweltCmd;
 
 public class CommandManager {
     public static void registerCommands()
@@ -35,6 +36,8 @@ public class CommandManager {
         Dripwire.get().getCommand("homes").setExecutor(new HomesCmd());
         Dripwire.get().getCommand("nick").setExecutor(new NickCmd());
         Dripwire.get().getCommand("unnick").setExecutor(new NickCmd());
+        Dripwire.get().getCommand("trash").setExecutor(new TrashCmd());
+        // Dripwire.get().getCommand("farmwelt").setExecutor(new FarmweltCmd());
     }
 
 }
